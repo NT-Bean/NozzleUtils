@@ -110,8 +110,8 @@ int filecheck() {
 }
 
 double numbercheck(){
-    std::string filename = "./inputs/O-F ratio";
-    std::ifstream file(filename + ".txt");
+    std::string filename = "./inputs/O-F ratio.txt";
+    std::ifstream file(filename);
     double value;
     file >> value;
     return value;
@@ -132,9 +132,11 @@ if (checkfile >= 1){
 if (checkfile == 0){
     std::cout << "Inputs Exist\n";
 }
-    return 0;
+double value = 0;
+value = numbercheck();
+std::cout << value << "\n";
+    return value;
 
 //now make into value from thing
 
-//equation: 1
 }
