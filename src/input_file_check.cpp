@@ -135,7 +135,6 @@ if (checkfile == 0){
     return 0;
 
 //now make into value from thing
-std::cout << numbercheck() << std::endl;
 
 //equation: 1
 }
