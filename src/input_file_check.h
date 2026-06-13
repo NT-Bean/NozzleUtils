@@ -6,6 +6,6 @@
 #include <vector>
 
 int filecheck();
-
+double numbercheck();
 
 #endif

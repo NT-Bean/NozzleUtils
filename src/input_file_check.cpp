@@ -4,10 +4,10 @@
 int filecheck() {
  int value = 0;
     // gamma in
-    std::ifstream gfile("gamma.txt");
+    std::ifstream gfile("./inputs/gamma.txt");
     if (!gfile.is_open()) {
         std::cout << "File doesn't exist. Creating it.\n";
-        std::ofstream createFile("gamma.txt");
+        std::ofstream createFile("./inputs/gamma.txt");
         value = value + 10;
         if (!createFile.is_open()) {
             std::cout << "Failed to create the file.\n";
@@ -17,10 +17,10 @@ int filecheck() {
     }
 
  // chamber pressure in
-    std::ifstream cpfile("chamber pressure {pa}.txt");
+    std::ifstream cpfile("./inputs/chamber pressure {pa}.txt");
     if (!cpfile.is_open()) {
         std::cout << "File doesn't exist. Creating it.\n";
-        std::ofstream createFile("chamber pressure {pa}.txt");
+        std::ofstream createFile("./inputs/chamber pressure {pa}.txt");
             value = value + 10;
         if (!createFile.is_open()) {
             std::cout << "Failed to create the file.\n";
@@ -30,10 +30,10 @@ int filecheck() {
     }
 
 // cumbustion chamber temp in
-    std::ifstream ctfile("chamber temp.txt");
+    std::ifstream ctfile("./inputs/chamber temp.txt");
     if (!ctfile.is_open()) {
         std::cout << "File doesn't exist. Creating it.\n";
-        std::ofstream createFile("chamber temp.txt");
+        std::ofstream createFile("./inputs/chamber temp.txt");
             value = value + 10;
         if (!createFile.is_open()) {
             std::cout << "Failed to create the file.\n";
@@ -43,10 +43,10 @@ int filecheck() {
     }
 
 //thrust wanted in
-    std::ifstream nfile("thrust wanted {n}.txt");
+    std::ifstream nfile("./inputs/thrust wanted {n}.txt");
     if (!nfile.is_open()) {
         std::cout << "File doesn't exist. Creating it.\n";
-        std::ofstream createFile("thrust wanted {n}.txt");
+        std::ofstream createFile("./inputs/thrust wanted {n}.txt");
      value = value + 10;
         if (!createFile.is_open()) {
             std::cout << "Failed to create the file.\n";
@@ -56,10 +56,10 @@ int filecheck() {
     }
 
 //Molecular weight in
-    std::ifstream mwfile("Molecular weight.txt");
+    std::ifstream mwfile("./inputs/Molecular weight.txt");
     if (!mwfile.is_open()) {
         std::cout << "File doesn't exist. Creating it.\n";
-        std::ofstream createFile("Molecular weight.txt");
+        std::ofstream createFile("./inputs/Molecular weight.txt");
          value = value + 10;
         if (!createFile.is_open()) {
             std::cout << "Failed to create the file.\n";
@@ -69,10 +69,10 @@ int filecheck() {
     }
 
 //ambient pressure
-    std::ifstream apafile("ambient pressure {pa}.txt");
+    std::ifstream apafile("./inputs/ambient pressure {pa}.txt");
     if (!apafile.is_open()) {
         std::cout << "File doesn't exist. Creating it.\n";
-        std::ofstream createFile("ambient pressure {pa}.txt");
+        std::ofstream createFile("./inputs/ambient pressure {pa}.txt");
          value = value + 10;
         if (!createFile.is_open()) {
             std::cout << "Failed to create the file.\n";
@@ -83,10 +83,10 @@ int filecheck() {
 
 
 //oxidizer to fuel ratio
-    std::ifstream offile("O-F ratio.txt");
+    std::ifstream offile("./inputs/O-F ratio.txt");
     if (!offile.is_open()) {
         std::cout << "File doesn't exist. Creating it.\n";
-        std::ofstream createFile("O-F ratio.txt");
+        std::ofstream createFile("./inputs/O-F ratio.txt");
          value = value + 10;
         if (!createFile.is_open()) {
             std::cout << "Failed to create the file.\n";
@@ -95,10 +95,10 @@ int filecheck() {
         
     }
     //characteristic chamber length
-    std::ifstream cclfile("characteristic chamber length {m}.txt");
+    std::ifstream cclfile("./inputs/characteristic chamber length {m}.txt");
     if (!cclfile.is_open()) {
         std::cout << "File doesn't exist. Creating it.\n";
-        std::ofstream createFile("characteristic chamber length {m}.txt");
+        std::ofstream createFile("./inputs/characteristic chamber length {m}.txt");
          value = value + 10;
         if (!createFile.is_open()) {
             std::cout << "Failed to create the file.\n";
@@ -110,7 +110,7 @@ int filecheck() {
 }
 
 double numbercheck(){
-    std::string filename = "O-F ratio";
+    std::string filename = "./inputs/O-F ratio";
     std::ifstream file(filename + ".txt");
     double value;
     file >> value;
