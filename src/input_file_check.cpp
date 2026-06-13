@@ -119,7 +119,9 @@ double numbercheck(){
     std::ifstream file(filename);
     double value;
     file >> value;
+    std::cout << value << "\n";
     return value;
+    
 }
 
 
@@ -135,10 +137,9 @@ if (checkfile >= 1){
 if (checkfile == 0){
     std::cout << "Inputs Exist\n";
 }
-double value = 0;
-value = numbercheck();
-std::cout << value << "\n";
-    return value;
+numbercheck();
+
+    return 0;
 
 //now make into value from thing
 
