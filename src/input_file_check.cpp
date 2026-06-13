@@ -126,6 +126,5 @@ if (checkfile == 0){
 }
     return 0;
 
-//now this is the fun math:
-
+//now this is the fun math yippie :
 }
