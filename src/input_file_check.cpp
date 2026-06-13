@@ -114,8 +114,8 @@ int filecheck() {
     return value;
 }
 
-double numbercheck(){
-    std::string filename = "./inputs/O-F ratio.txt";
+double numbercheck(c){
+    std::string filename = c;
     std::ifstream file(filename);
     double value;
     file >> value;

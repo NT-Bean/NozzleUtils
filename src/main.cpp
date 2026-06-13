@@ -14,6 +14,8 @@ int main() {
     if (checkfile == 0) {
         std::cout << "Inputs Exist\n";
     }
+double of_ratio = numbercheck("./inputs/O-F ratio.txt");
+std::cout << "O-F ratio: " << of_ratio << "\n";
     return 0;
 
     // now this is the fun math:
