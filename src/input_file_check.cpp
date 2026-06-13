@@ -1,4 +1,5 @@
-#include "input_file_check.h"
+#include <iostream>
+#include <fstream>
 
 int filecheck() {
  int value = 0;
@@ -106,4 +107,35 @@ int filecheck() {
         
     }
     return value;
+}
+
+double numbercheck(){
+    std::string filename = "O-F ratio";
+    std::ifstream file(filename + ".txt");
+    double value;
+    file >> value;
+    return value;
+}
+
+
+int main() {
+    /*
+    this part just checks if thy files exist
+    if you get a number in the one digit you effed up
+    if you get a number in the tens digit just rerun it and give it an input.
+     */
+int checkfile = filecheck();
+if (checkfile >= 1){
+    std::cout << (checkfile);
+    std::exit(0);
+}
+if (checkfile == 0){
+    std::cout << "Inputs Exist\n";
+}
+    return 0;
+
+//now make into value from thing
+std::cout << numbercheck() << std::endl;
+
+//equation: 1
 }
