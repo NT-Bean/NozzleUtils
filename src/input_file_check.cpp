@@ -3,7 +3,7 @@
 
 int filecheck() {
         /*
-    this part just checks if thy files exist
+    this part just checks if thy files exist and if not creates them
     if you get a number in the one digit you effed up
     if you get a number in the tens digit just rerun it and give it an input.
      */
@@ -113,7 +113,7 @@ int filecheck() {
     }
     return value;
 }
-
+// this part checks what the value of the file is and returns it 
 double numbercheck(c){
     std::string filename = c;
     std::ifstream file(filename);

@@ -15,7 +15,8 @@ int main() {
     if (checkfile == 0) {
         std::cout << "Inputs Exist\n";
     }
-
+        
+    // assign file paths to variables
      std::vector<std::string> ListofFilePath = {
          "./inputs/ambient pressure {pa}.txt",
          "./inputs/chamber pressure {pa}.txt",
@@ -27,7 +28,7 @@ int main() {
          "./inputs/thrust wanted {n}.txt"
         };
 
-        
+        // take files from list and turn them into numbers
     double ambient_pressure = numbercheck(std::string(ListofFilePath[0]));
     double chamber_pressure = numbercheck(std::string(ListofFilePath[1]));
     double chamber_temperature = numbercheck(std::string(ListofFilePath[2]));
@@ -45,8 +46,7 @@ int main() {
     std::cout << "O-F Ratio: " << of_ratio << "\n";
     std::cout << "Thrust Wanted: " << thrust_wanted << "\n"; 
 
- 
-    
-    //test
+     // now we do the meth 
+
     return 0;
 }
