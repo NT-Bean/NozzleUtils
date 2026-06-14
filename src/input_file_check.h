@@ -5,7 +5,10 @@
 #include <fstream>
 #include <vector>
 
+extern std::vector<std::string> ListofFilePaths;
+
 int filecheck();
 double numbercheck(std::string c);
+int handleFileErrors(int errorCode);
 
 #endif
