@@ -13,8 +13,8 @@ int main() {
     */
     int checkfile = filecheck();
     std::cout << "filecheck returned code " << checkfile << ": ";
-    if (checkfile != 0) { return handleFileErrors(checkfile); }
-    
+    int errorCode = handleFileErrors(checkfile);
+    if (errorCode != 0) { return errorCode; }    
 
         // take files from list and turn them into numbers
     double ambient_pressure = numbercheck(std::string(ListofFilePaths[0]));

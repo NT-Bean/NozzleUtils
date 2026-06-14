@@ -30,8 +30,8 @@ long double integrate(F function, double start, double end, int iterations, bool
     if (verbose)
     {
         t2 = std::chrono::high_resolution_clock::now();
-        long long microseconds = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count();
-        std::cout << "Integration took " << microseconds << " microseconds to run.\n";
+        long long nanoseconds = std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count();
+        std::cout << "Integration took " << (nanoseconds >= 100000 ? nanoseconds / 1000 : nanoseconds) << (nanoseconds >= 100000 ? " microseconds" : " nanoseconds") << " to run.\n";
     }
 
     return sum;

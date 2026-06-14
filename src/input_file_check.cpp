@@ -13,7 +13,7 @@ std::vector<std::string> ListofFilePaths = {
     "./inputs/thrust wanted {n}.txt"
 };
 
-// PLEASE LET ME OPTIMIZE THIS MY EYES ARE IN PAIN JUST LOOKING AT IT
+// PLEASE LET ME OPTIMIZE THIS
 int filecheck() {
         /*
     this part just checks if thy files exist and if not creates them
@@ -156,7 +156,7 @@ double numbercheck(std::string c){
     std::ifstream file(filename);
     double value;
     file >> value;
-    std::cout << value << "\n";
+    // std::cout << value << "\n";
     return value;
     
 }
