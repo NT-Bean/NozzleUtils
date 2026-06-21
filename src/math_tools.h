@@ -9,7 +9,11 @@
 
 class MathTools
 {
-public:
+    public:
+
+    static double universalGasConstant = 8.31446261815324;
+    static double pi = 3.14159265358979323846464338;
+
     static void setStdOutPrecision(int decimalPlaces);
 
     template<typename F>
@@ -42,6 +46,8 @@ public:
 
     template<typename F>
     static long double integrate(F function, double start, double end, int iterations) { return integrate(function, start, end, iterations, false); }
+
+    static double find_radius(double area);
 
 };
 

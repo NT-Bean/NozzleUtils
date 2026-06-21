@@ -26,7 +26,7 @@ int main() {
     double gamma = numbercheck(std::string(ListofFilePaths[4]));
     double molecular_weight = numbercheck(std::string(ListofFilePaths[5]));
     double of_ratio = numbercheck(std::string(ListofFilePaths[6]));
-    double thrust_wanted = numbercheck(std::string(ListofFilePaths[7]));
+    double thrust = numbercheck(std::string(ListofFilePaths[7]));
     std::cout << "Ambient_Pressure: " << ambient_pressure << "\n";
     std::cout << "Chamber_Pressure: " << chamber_pressure << "\n";
     std::cout << "Chamber_Temperature: " << chamber_temperature << "\n";
@@ -34,7 +34,7 @@ int main() {
     std::cout << "Gamma: " << gamma << "\n";   
     std::cout << "Molecular_Weight: " << molecular_weight << "\n";
     std::cout << "O-F Ratio: " << of_ratio << "\n";
-    std::cout << "Thrust Wanted: " << thrust_wanted << "\n"; 
+    std::cout << "Thrust: " << thrust << "\n"; 
 
 
     MathTools::setStdOutPrecision(8);
