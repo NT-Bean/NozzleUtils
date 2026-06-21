@@ -3,7 +3,9 @@
 
 #include "input_file_check.h"
 #include "math_tools.h"
-
+#include <iostream>
+#include <cmath>
+#include <fstream>
 int main() {
 
     /*
