@@ -49,6 +49,13 @@ int main() {
          MathTools::setStdOutPrecision(8);
     }
    
+    // check the edge cases of not 1 or 2
+    if (check != 1){
+        if (check !=2){
+            std::cout << "skill issue";
+            return 1;
+        }
+    }
 
 
 
@@ -83,8 +90,8 @@ int main() {
     std::cout << double(velocity_exit) << std::endl << " The exit velocity in m/s\n";
     std::cout << double(exit_mach) << std::endl << " The local Mach at the exit\n";
     std::cout << double(epsilon) << std::endl << " The expansion ratio from throat to exit\n";
-    std::cout << double(throat_area) << std::endl << " The throat area in m^2\n";
-    std::cout << double(exit_area) << std::endl << " The exit area in m^2\n";
+    std::cout << double(throat_area) << std::endl << " The throat area in m^2\n"  << std::endl ;
+    std::cout << double(exit_area) << " The exit area in m^2\n"  << std::endl ;
 
 
 
