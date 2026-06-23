@@ -93,11 +93,11 @@ int main() {
     std::cout << double(throat_area) << std::endl << " The throat area in m^2\n"  << std::endl ;
     std::cout << double(exit_area) << " The exit area in m^2\n"  << std::endl ;
 
-
-
-
+    if (throat_area > 1){
+       std::cout << "that's a lil big there";
+    }
 
     system("pause");
-system("pause");
+
     return 0;
 }
