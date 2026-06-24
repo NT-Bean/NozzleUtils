@@ -84,7 +84,11 @@ int main() {
    // find the exit area
    double exit_area = Formulae::find_exit_area(epsilon, throat_area);
 
-
+   if (exit_mach <= 1){
+    std::cout << "Cant exist, exit velocity too low\n";
+    system("pause");
+    return 0;
+    }
 
    std::cout << "\n";
    // we print the results
@@ -107,6 +111,7 @@ int main() {
    if (throat_area > 1){
       std::cout << "that's a lil big there\n";
    }
+
 
    std::cout << "\n";
    system("pause");
