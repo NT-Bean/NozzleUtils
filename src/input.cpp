@@ -21,13 +21,13 @@ Input::Input(InputType inputType)
 
     std::vector<std::string> nameOptions =
     {
-        "Ambient Pressure: ",
-        "Chamber Pressure: ",
-        "Chamber Temperature: ",
-        "Characteristic Chamber Length: ",
-        "Gamma: ",   
-        "Molecular Weight: ",
-        "O-F Ratio: ",
+        "Ambient Pressure",
+        "Chamber Pressure",
+        "Chamber Temperature",
+        "Characteristic Chamber Length",
+        "Gamma",   
+        "Molecular Weight",
+        "O-F Ratio",
         "Thrust",
         "Exit Temperature"
     };
