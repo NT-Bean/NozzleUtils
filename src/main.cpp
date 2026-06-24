@@ -64,7 +64,7 @@ int main() {
 
 
 
-    // we do the velocity exit
+   // we do the velocity exit
    double velocity_exit = Formulae::find_velocity_exit(
       inputs[Input::CHAMBER_TEMP].value,
       inputs[Input::GAMMA].value,
@@ -85,10 +85,10 @@ int main() {
    double exit_area = Formulae::find_exit_area(epsilon, throat_area);
 
    if (exit_mach <= 1){
-    std::cout << "Cant exist, exit velocity too low\n";
-    system("pause");
-    return 0;
-    }
+      std::cout << "Cant exist, exit velocity too low\n";
+      system("pause");
+      return 0;
+   }
 
    std::cout << "\n";
    // we print the results
@@ -96,6 +96,8 @@ int main() {
    if (do_they_want_all == 1) {
       std::cout << "The throat area in m^2: " << throat_area << "\n";
       std::cout << "The exit area (m^2): " << exit_area << "\n";
+      std::cout << "Throat diameter (cm): " << 200 * MathTools::find_radius(throat_area) << "\n";
+      std::cout << "Exit diameter (cm): " << 200 * MathTools::find_radius(exit_area) << "\n";
    }
    //if = 2 then they get armaggedon
    if (do_they_want_all == 2) {
@@ -105,6 +107,9 @@ int main() {
       std::cout << "The expansion ratio from throat to exit: " << epsilon << "\n";
       std::cout << "The throat area in m^2: " << throat_area << "\n";
       std::cout << "The exit area (m^2): " << exit_area << "\n";
+      std::cout << "\n";
+      std::cout << "Throat diameter (cm): " << 200 * MathTools::find_radius(throat_area) << "\n";
+      std::cout << "Exit diameter (cm): " << 200 * MathTools::find_radius(exit_area) << "\n";
    }
 
 
