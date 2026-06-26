@@ -8,8 +8,6 @@
 
 int main() {
 
-   // ALL CODE AFTERE IRRELEVANT FOR TESTING PURPOSES
-
    //check if you want to get the inputs from  file or new inputs straight from cmd
    int check = 0;
 
@@ -80,7 +78,7 @@ int main() {
    // find exit mach for finding ratio
    double exit_mach = Formulae::find_local_mach(velocity_exit, inputs[Input::CHAMBER_TEMP].value, inputs[Input::GAMMA].value, inputs[Input::MOLECULAR_WEIGHT].value);
    // find epsilon aka the optimim expansion ratio from throat to exit
-   double epsilon = Formulae::find_epsilon(velocity_exit, exit_mach, inputs[Input::GAMMA].value); 
+   double epsilon = Formulae::find_epsilon(inputs[Input::AMBIENT_PRESSURE].value, inputs[Input::CHAMBER_PRESSURE].value, inputs[Input::GAMMA].value); 
    // find thrust coefficient
    double thrust_coefficient = Formulae::find_thrust_coefficient(inputs[Input::GAMMA].value, inputs[Input::AMBIENT_PRESSURE].value, inputs[Input::CHAMBER_PRESSURE].value);
    //find throat area
@@ -108,7 +106,7 @@ int main() {
       std::cout << "The mass flow: " << mass_flow << "\n"; // whatever the standard unit of mass flow rate is
       std::cout << "The exit velocity (m/s): " << velocity_exit << "\n";
       std::cout << "The thrust coefficient: " << thrust_coefficient << "\n";
-      std::cout << "what the fuck i sthe speed of sound " << Formulae::find_speed_of_sound(inputs[Input::CHAMBER_TEMP].value, inputs[Input::GAMMA].value, inputs[Input::MOLECULAR_WEIGHT].value) << "\n";
+      std::cout << "Speed of sound in the exhaust (m/s): " << Formulae::find_speed_of_sound(inputs[Input::CHAMBER_TEMP].value, inputs[Input::GAMMA].value, inputs[Input::MOLECULAR_WEIGHT].value) << "\n";
       std::cout << "The local Mach at the exit: " << exit_mach << "\n";
       std::cout << "The expansion ratio from throat to exit: " << epsilon << "\n";
       std::cout << "\n";
