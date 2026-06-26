@@ -2,7 +2,7 @@
 
 double Formulae::find_velocity_exit(double chamber_temperature, double gamma, double exit_pressure, double chamber_pressure, double molecular_weight) {
     
-    return sqrt(((chamber_temperature * MathTools::universalGasConstant) / molecular_weight) * ((2 * gamma) / (gamma - 1)) * (1 - pow((exit_pressure   / chamber_pressure), ((gamma - 1) / gamma))));
+    return sqrt(((chamber_temperature * MathTools::universalGasConstant) / (molecular_weight / 1000)) * ((2 * gamma) / (gamma - 1)) * (1 - pow((exit_pressure   / chamber_pressure), ((gamma - 1) / gamma))));
 
 }
 
