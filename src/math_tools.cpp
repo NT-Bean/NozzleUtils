@@ -11,3 +11,10 @@ void MathTools::setStdOutPrecision(int decimalPlaces)
 double MathTools::find_radius(double area) {
     return sqrt(area / MathTools::pi);
 }
+
+double MathTools::to_radians(double degrees) {
+    return (MathTools::pi * degrees) / 180.0;
+}
+double MathTools::to_degrees(double radians) {
+    return (180.0 * radians) / MathTools::pi;
+}

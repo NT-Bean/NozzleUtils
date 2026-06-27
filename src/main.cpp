@@ -85,6 +85,9 @@ int main() {
    double throat_area = Formulae::find_throat_area(inputs[Input::THRUST].value, thrust_coefficient, inputs[Input::CHAMBER_PRESSURE].value);
    // find the exit area
    double exit_area = Formulae::find_exit_area(epsilon, throat_area);
+   // find the length of an equivalent conical nozzle and a true 80% nozzle. i would make the percent a new input but eh
+   double conical_length = Formulae::find_conical_length(MathTools::find_radius(exit_area), MathTools::find_radius(throat_area), MathTools::to_radians(15.0));
+   double length = 0.8 * conical_length;
 
    if (exit_mach <= 1){
     std::cout << "\n Cant exist, exit velocity too low\n";
@@ -98,8 +101,9 @@ int main() {
    if (do_they_want_all == 1) {
       std::cout << "The throat area (cm^2): " << 10000 * throat_area << "\n"; // note that these two areas are still stored as m^2; they are simply logged as cm^2 for reading's sake
       std::cout << "The exit area (cm^2): " << 10000 * exit_area << "\n";
-      std::cout << "Throat diameter (cm): " << 200 * MathTools::find_radius(throat_area) << "\n"; // also stored as a radius and in meters
+      std::cout << "Throat diameter (cm): " << 200 * MathTools::find_radius(throat_area) << "\n"; // also stored in meters
       std::cout << "Exit diameter (cm): " << 200 * MathTools::find_radius(exit_area) << "\n";
+      std::cout << "Nozzle Length (cm): " << 100 * length << "\n"; // ALSO stored in meters
    }
    //if = 2 then they get armaggedon
    if (do_they_want_all == 2) {
@@ -112,8 +116,9 @@ int main() {
       std::cout << "\n";
       std::cout << "The throat area (cm^2): " << 10000 * throat_area << "\n"; // note that these two areas are still stored as m^2; they are simply logged as cm^2 for reading's sake
       std::cout << "The exit area (cm^2): " << 10000 * exit_area << "\n";
-      std::cout << "Throat diameter (cm): " << 200 * MathTools::find_radius(throat_area) << "\n"; // also stored as a radius and in meters
-      std::cout << "Exit diameter (cm): " << 200 * MathTools::find_radius(exit_area) << "\n";
+      std::cout << "Throat radius (cm): " << 100 * MathTools::find_radius(throat_area) << "\n"; // also stored in meters
+      std::cout << "Exit radius (cm): " << 100 * MathTools::find_radius(exit_area) << "\n";
+      std::cout << "Nozzle Length (cm): " << 100 * length << "\n"; // ALSO stored in meters
    }
 
 
