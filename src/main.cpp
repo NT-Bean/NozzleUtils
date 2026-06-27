@@ -5,9 +5,9 @@
 #include "input_file_check.h"
 #include "math_tools.h"
 #include "formulae.h"
-using namespace std;
 
 int main() {
+
    //check if you want to get the inputs from  file or new inputs straight from cmd
    int check = 0;
 
@@ -76,11 +76,13 @@ int main() {
    // we do da mass flow
    double mass_flow = Formulae::find_mass_flow(inputs[Input::THRUST].value, velocity_exit);
    // find exit mach for finding ratio
-   double exit_mach = Formulae::find_local_mach(velocity_exit, inputs[Input::CHAMBER_TEMP].value, inputs[Input::GAMMA].value);
+   double exit_mach = Formulae::find_local_mach(velocity_exit, inputs[Input::CHAMBER_TEMP].value, inputs[Input::GAMMA].value, inputs[Input::MOLECULAR_WEIGHT].value);
    // find epsilon aka the optimim expansion ratio from throat to exit
-   double epsilon = Formulae::find_epsilon(velocity_exit, exit_mach, inputs[Input::GAMMA].value); 
+   double epsilon = Formulae::find_epsilon(inputs[Input::AMBIENT_PRESSURE].value, inputs[Input::CHAMBER_PRESSURE].value, inputs[Input::GAMMA].value); 
+   // find thrust coefficient
+   double thrust_coefficient = Formulae::find_thrust_coefficient(inputs[Input::GAMMA].value, inputs[Input::AMBIENT_PRESSURE].value, inputs[Input::CHAMBER_PRESSURE].value);
    //find throat area
-   double throat_area = Formulae::find_throat_area(mass_flow, inputs[Input::CHAMBER_PRESSURE].value, inputs[Input::GAMMA].value, inputs[Input::CHAMBER_TEMP].value);
+   double throat_area = Formulae::find_throat_area(inputs[Input::THRUST].value, thrust_coefficient, inputs[Input::CHAMBER_PRESSURE].value);
    // find the exit area
    double exit_area = Formulae::find_exit_area(epsilon, throat_area);
 
@@ -94,26 +96,28 @@ int main() {
    // we print the results
    // if = 1 then they get just dimensions
    if (do_they_want_all == 1) {
-      std::cout << "The throat area in m^2: " << throat_area << "\n";
-      std::cout << "The exit area (m^2): " << exit_area << "\n";
-      std::cout << "Throat diameter (cm): " << 200 * MathTools::find_radius(throat_area) << "\n";
+      std::cout << "The throat area (cm^2): " << 10000 * throat_area << "\n"; // note that these two areas are still stored as m^2; they are simply logged as cm^2 for reading's sake
+      std::cout << "The exit area (cm^2): " << 10000 * exit_area << "\n";
+      std::cout << "Throat diameter (cm): " << 200 * MathTools::find_radius(throat_area) << "\n"; // also stored as a radius and in meters
       std::cout << "Exit diameter (cm): " << 200 * MathTools::find_radius(exit_area) << "\n";
    }
    //if = 2 then they get armaggedon
    if (do_they_want_all == 2) {
-      std::cout << "The mass flow: " << mass_flow << "\n";
+      std::cout << "The mass flow: " << mass_flow << "\n"; // whatever the standard unit of mass flow rate is
       std::cout << "The exit velocity (m/s): " << velocity_exit << "\n";
+      std::cout << "The thrust coefficient: " << thrust_coefficient << "\n";
+      std::cout << "Speed of sound in the exhaust (m/s): " << Formulae::find_speed_of_sound(inputs[Input::CHAMBER_TEMP].value, inputs[Input::GAMMA].value, inputs[Input::MOLECULAR_WEIGHT].value) << "\n";
       std::cout << "The local Mach at the exit: " << exit_mach << "\n";
       std::cout << "The expansion ratio from throat to exit: " << epsilon << "\n";
-      std::cout << "The throat area in m^2: " << throat_area << "\n";
-      std::cout << "The exit area (m^2): " << exit_area << "\n";
       std::cout << "\n";
-      std::cout << "Throat diameter (cm): " << 200 * MathTools::find_radius(throat_area) << "\n";
+      std::cout << "The throat area (cm^2): " << 10000 * throat_area << "\n"; // note that these two areas are still stored as m^2; they are simply logged as cm^2 for reading's sake
+      std::cout << "The exit area (cm^2): " << 10000 * exit_area << "\n";
+      std::cout << "Throat diameter (cm): " << 200 * MathTools::find_radius(throat_area) << "\n"; // also stored as a radius and in meters
       std::cout << "Exit diameter (cm): " << 200 * MathTools::find_radius(exit_area) << "\n";
    }
 
 
-   if (throat_area > 1){
+   if (throat_area > 1) {
       std::cout << "that's a lil big there\n";
    }
 

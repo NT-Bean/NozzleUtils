@@ -2,8 +2,7 @@
 
 double Formulae::find_velocity_exit(double chamber_temperature, double gamma, double exit_pressure, double chamber_pressure, double molecular_weight) {
     
-    return sqrt(((chamber_temperature * MathTools::universalGasConstant) / (molecular_weight / 1000)) * ((2 * gamma) / (gamma - 1)) * (1 - pow((exit_pressure   / chamber_pressure), ((gamma - 1) / gamma))));
-
+    return sqrt(((chamber_temperature * MathTools::universalGasConstant) / molecular_weight) * ((2.0 * gamma) / (gamma - 1.0)) * (1.0 - pow((exit_pressure   / chamber_pressure), ((gamma - 1.0) / gamma))));
 }
 
 double Formulae::find_mass_flow(double thrust, double velocity_exit){
@@ -12,31 +11,50 @@ double Formulae::find_mass_flow(double thrust, double velocity_exit){
 
 }
 
-double Formulae::find_local_mach(double velocity, double temperature, double gamma){
 
-    return (velocity / sqrt(MathTools::universalGasConstant * temperature * gamma));    
+double Formulae::find_speed_of_sound(double temperature, double gamma, double molecular_weight) {
+    return sqrt((gamma * MathTools::universalGasConstant * temperature) / molecular_weight);
+}
+
+double Formulae::find_local_mach(double velocity, double temperature, double gamma, double molecular_weight) {
+
+    return (velocity / sqrt((gamma * MathTools::universalGasConstant * temperature) / molecular_weight));    
+}
+double Formulae::find_local_mach(double velocity, double speed_of_sound) {
+    return velocity / speed_of_sound;
 }
 //optimum expansions
 
-double Formulae::find_throat_area(double mass_flow, double chamber_pressure, double gamma, double chamber_temperature) {
+double Formulae::find_throat_area(double mass_flow, double chamber_pressure, double gamma, double chamber_temperature, double molecular_weight) {
 
-    return (mass_flow / (chamber_pressure * gamma * (sqrt(pow((2 / (gamma + 1)), ((gamma + 1) / (gamma - 1))))) / (sqrt(gamma * chamber_temperature * MathTools::universalGasConstant))));
+    return (mass_flow / chamber_pressure) * sqrt( (MathTools::universalGasConstant * chamber_temperature) / (molecular_weight * gamma * pow(2.0 / (gamma + 1.0), (gamma + 1.0) / (gamma - 1.0))) );
+}
+double Formulae::find_throat_area(double force, double thrust_coefficient, double chamber_pressure)
+{
+    return force / (thrust_coefficient * chamber_pressure);
 }
 
-double Formulae::find_epsilon(double velocity_exit, double exit_mach, double gamma) {
+double Formulae::find_epsilon(double exit_mach, double gamma) {
 
-    return (1 / exit_mach) * (sqrt(pow( (1 + ((gamma - 1) / 2)* pow(exit_mach, 2)) / (1 + ((gamma - 1) / 2)), ((gamma + 1) / (gamma - 1)) )));
+    return (1.0 / exit_mach) * sqrt( pow( (1 + ((gamma - 1) / 2) * exit_mach * exit_mach) / (1 + ((gamma - 1) / 2)), (gamma + 1) / (gamma - 1) ) );
+}
+double Formulae::find_epsilon(double ambient_pressure, double chamber_pressure, double gamma) {
+    return 1.0 / ( pow((gamma + 1.0) / 2.0, 1.0 / (gamma - 1.0)) * pow(ambient_pressure / chamber_pressure, 1.0 / gamma) * sqrt( ((gamma + 1) / (gamma - 1)) * (1 - pow(ambient_pressure / chamber_pressure, (gamma - 1.0) / gamma)) ) );
 }
 
 double Formulae::find_exit_area(double epsilon, double throat_area) {
     return (epsilon * throat_area);
 }
 
-double Formulae::find_length_diverging(double R_chamber, double R_throat, double alpha) {
+double Formulae::find_conical_length(double R_exit, double R_throat, double alpha) {
 
-    return (R_chamber - R_throat) / tan(alpha);
+    return (R_exit - R_throat) / tan(alpha);
 }
 
+double Formulae::find_thrust_coefficient(double gamma, double ambient_pressure, double chamber_pressure)
+{
+    return sqrt(((2.0 * gamma * gamma) / (gamma - 1.0)) * pow(2.0 / (gamma + 1.0), (gamma + 1.0) / (gamma - 1.0)) * (1.0 - pow(ambient_pressure / chamber_pressure, (gamma - 1.0) / gamma)) );
+}
 
 /*         // take files from list and turn them into numbers
     double ambient_pressure = numbercheck(std::string(ListofFilePaths[0]));
