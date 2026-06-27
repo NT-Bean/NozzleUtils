@@ -54,7 +54,7 @@ int main() {
    // check the edge cases of not 1 or 2
    if (check != 1 && check != 2) {
       std::cout << "skill issue";
-      return -1;
+      return 0;
    }
 
 
