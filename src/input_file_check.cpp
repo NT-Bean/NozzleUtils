@@ -18,13 +18,13 @@ int filecheck(std::vector<Input> inputs) {
             if (!createFile.is_open()) {
                 std::cout << "Failed to create the file.\n";
                 value++;
-            }
-            
+            }      
         }
     }
     return value;
 }
 
+//output errors
 int handleFileErrors(int errorCode)
 {
     switch (errorCode)
@@ -56,5 +56,4 @@ double numbercheck(std::string c){
     file >> value;
     // std::cout << value << "\n";
     return value;
-    
 }

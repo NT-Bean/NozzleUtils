@@ -7,7 +7,6 @@
 #include "formulae.h"
 
 int main() {
-
    //check if you want to get the inputs from  file or new inputs straight from cmd
    int check = 0;
 
@@ -48,7 +47,7 @@ int main() {
          inputs.push_back(Input((Input::InputType)i));
          std::cout << inputs[i].name << ": ";
          std::cin >> inputs[i].value;
-         }
+      }
    }
 
    // check the edge cases of not 1 or 2
@@ -62,8 +61,6 @@ int main() {
    //  long double integralTest = MathTools::integrate<double(*)(double)>(sin, 0.0, 3.14, 10000, true);
    //  std::cout << "integral of sin(x) from 0 to 3.14 equals " << std::endl << integralTest; 
 
-
-
    // we do the velocity exit
    double velocity_exit = Formulae::find_velocity_exit(
       inputs[Input::CHAMBER_TEMP].value,
@@ -72,7 +69,6 @@ int main() {
       inputs[Input::CHAMBER_PRESSURE].value,
       inputs[Input::MOLECULAR_WEIGHT].value
    );
-
    // we do da mass flow
    double mass_flow = Formulae::find_mass_flow(inputs[Input::THRUST].value, velocity_exit);
    // find exit mach for finding ratio
@@ -86,13 +82,14 @@ int main() {
    // find the exit area
    double exit_area = Formulae::find_exit_area(epsilon, throat_area);
 
+   //check if we actually achieve mach values
    if (exit_mach <= 1){
     std::cout << "\n Cant exist, exit velocity too low\n";
     system("pause");
     return 0;
-    }
+   }
 
-   std::cout << "\n";
+   std::cout << "\n"; // line spacing
    // we print the results
    // if = 1 then they get just dimensions
    if (do_they_want_all == 1) {
@@ -101,6 +98,7 @@ int main() {
       std::cout << "Throat diameter (cm): " << 200 * MathTools::find_radius(throat_area) << "\n"; // also stored as a radius and in meters
       std::cout << "Exit diameter (cm): " << 200 * MathTools::find_radius(exit_area) << "\n";
    }
+
    //if = 2 then they get armaggedon
    if (do_they_want_all == 2) {
       std::cout << "The mass flow: " << mass_flow << "\n"; // whatever the standard unit of mass flow rate is
@@ -115,17 +113,12 @@ int main() {
       std::cout << "Throat diameter (cm): " << 200 * MathTools::find_radius(throat_area) << "\n"; // also stored as a radius and in meters
       std::cout << "Exit diameter (cm): " << 200 * MathTools::find_radius(exit_area) << "\n";
    }
-
-
+   //check if we screwed up and throat is bigger than a square meter
    if (throat_area > 1) {
       std::cout << "that's a lil big there\n";
    }
-
-
+   //pause code so we can  see the output
    std::cout << "\n";
    system("pause");
-
    return 0;
-
-   // i go take small nap
 }
