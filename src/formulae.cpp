@@ -60,6 +60,10 @@ double Formulae::find_thrust_coefficient(double gamma, double ambient_pressure, 
     return sqrt(((2.0 * gamma * gamma) / (gamma - 1.0)) * pow(2.0 / (gamma + 1.0), (gamma + 1.0) / (gamma - 1.0)) * (1.0 - pow(ambient_pressure / chamber_pressure, (gamma - 1.0) / gamma)) );
 }
 
+double Formulae::find_chamber_length(double characteristic_chamber_length, double throat_area, double chamber_radii) {
+    return (characteristic_chamber_length * throat_area) / (pi * pow(chamber_radii, 2)); // i forgot how to call pi
+}
+
 /*         // take files from list and turn them into numbers
     double ambient_pressure = numbercheck(std::string(ListofFilePaths[0]));
     double chamber_pressure = numbercheck(std::string(ListofFilePaths[1]));
