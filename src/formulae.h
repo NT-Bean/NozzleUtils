@@ -29,7 +29,7 @@ class Formulae
 
     static double find_thrust_coefficient(double gamma, double ambient_pressure, double chamber_pressure);
 
-
+    static double find_chamber_length(double characteristic_chamber_length, double throat_area, double chamber_radii);
 
 
 };
