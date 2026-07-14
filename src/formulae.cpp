@@ -1,14 +1,16 @@
 #include "formulae.h"
 
+// Velocity Exit
 double Formulae::find_velocity_exit(double chamber_temperature, double gamma, double exit_pressure, double chamber_pressure, double molecular_weight) {
     return sqrt(((chamber_temperature * MathTools::universalGasConstant) / molecular_weight) * ((2.0 * gamma) / (gamma - 1.0)) * (1.0 - pow((exit_pressure   / chamber_pressure), ((gamma - 1.0) / gamma))));
 }
 
-double Formulae::find_mass_flow(double thrust, double velocity_exit) {
+// Mass flow
+double Formulae::find_mass_flow(double thrust, double velocity_exit){
     return (thrust / velocity_exit);
 }
 
-
+//Locate local speed of sound
 double Formulae::find_speed_of_sound(double temperature, double gamma, double molecular_weight) {
     return sqrt((gamma * MathTools::universalGasConstant * temperature) / molecular_weight);
 }
@@ -26,17 +28,23 @@ double Formulae::find_epsilon(double ambient_pressure, double chamber_pressure, 
     return 1.0 / ( pow((gamma + 1.0) / 2.0, 1.0 / (gamma - 1.0)) * pow(ambient_pressure / chamber_pressure, 1.0 / gamma) * sqrt( ((gamma + 1) / (gamma - 1)) * (1 - pow(ambient_pressure / chamber_pressure, (gamma - 1.0) / gamma)) ) );
 }
 
+//Find exit area
 double Formulae::find_exit_area(double epsilon, double throat_area) {
     return (epsilon * throat_area);
 }
 
+// find conical length
 double Formulae::find_conical_length(double R_exit, double R_throat, double alpha) {
-
     return (R_exit - R_throat) / tan(alpha);
 }
 
-double Formulae::find_thrust_coefficient(double gamma, double ambient_pressure, double chamber_pressure) {
+//I forgot what this one is
+double Formulae::find_thrust_coefficient(double gamma, double ambient_pressure, double chamber_pressure){
     return sqrt(((2.0 * gamma * gamma) / (gamma - 1.0)) * pow(2.0 / (gamma + 1.0), (gamma + 1.0) / (gamma - 1.0)) * (1.0 - pow(ambient_pressure / chamber_pressure, (gamma - 1.0) / gamma)) );
+}
+
+double Formulae::find_chamber_length(double characteristic_chamber_length, double throat_area, double chamber_radii) {
+    return (characteristic_chamber_length * throat_area) / (MathTools::pi() * pow(chamber_radii, 2)); // i forgot how to call pi
 }
 
 /*         // take files from list and turn them into numbers
