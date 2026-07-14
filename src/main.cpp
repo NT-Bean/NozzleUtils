@@ -71,8 +71,10 @@ int main() {
    );
    // we do da mass flow
    double mass_flow = Formulae::find_mass_flow(inputs[Input::THRUST].value, velocity_exit);
+   // find speed ofsound in the exhaust gas
+   double speed_of_sound = Formulae::find_speed_of_sound(inputs[Input::CHAMBER_TEMP].value, inputs[Input::GAMMA].value, inputs[Input::MOLECULAR_WEIGHT].value);
    // find exit mach for finding ratio
-   double exit_mach = Formulae::find_local_mach(velocity_exit, inputs[Input::CHAMBER_TEMP].value, inputs[Input::GAMMA].value, inputs[Input::MOLECULAR_WEIGHT].value);
+   double exit_mach = Formulae::find_local_mach(velocity_exit, speed_of_sound);
    // find epsilon aka the optimim expansion ratio from throat to exit
    double epsilon = Formulae::find_epsilon(inputs[Input::AMBIENT_PRESSURE].value, inputs[Input::CHAMBER_PRESSURE].value, inputs[Input::GAMMA].value); 
    // find thrust coefficient
@@ -81,6 +83,9 @@ int main() {
    double throat_area = Formulae::find_throat_area(inputs[Input::THRUST].value, thrust_coefficient, inputs[Input::CHAMBER_PRESSURE].value);
    // find the exit area
    double exit_area = Formulae::find_exit_area(epsilon, throat_area);
+   // find the length of an equivalent conical nozzle and a true 80% nozzle. i would make the percent a new input but eh
+   double conical_length = Formulae::find_conical_length(MathTools::find_radius(exit_area), MathTools::find_radius(throat_area), MathTools::to_radians(15.0));
+   double length = 0.8 * conical_length;
 
    //check if we actually achieve mach values
    if (exit_mach <= 1){
@@ -95,8 +100,9 @@ int main() {
    if (do_they_want_all == 1) {
       std::cout << "The throat area (cm^2): " << 10000 * throat_area << "\n"; // note that these two areas are still stored as m^2; they are simply logged as cm^2 for reading's sake
       std::cout << "The exit area (cm^2): " << 10000 * exit_area << "\n";
-      std::cout << "Throat diameter (cm): " << 200 * MathTools::find_radius(throat_area) << "\n"; // also stored as a radius and in meters
+      std::cout << "Throat diameter (cm): " << 200 * MathTools::find_radius(throat_area) << "\n"; // also stored in meters
       std::cout << "Exit diameter (cm): " << 200 * MathTools::find_radius(exit_area) << "\n";
+      std::cout << "Nozzle Length (cm): " << 100 * length << "\n"; // ALSO stored in meters
    }
 
    //if = 2 then they get armaggedon
@@ -104,14 +110,15 @@ int main() {
       std::cout << "The mass flow: " << mass_flow << "\n"; // whatever the standard unit of mass flow rate is
       std::cout << "The exit velocity (m/s): " << velocity_exit << "\n";
       std::cout << "The thrust coefficient: " << thrust_coefficient << "\n";
-      std::cout << "Speed of sound in the exhaust (m/s): " << Formulae::find_speed_of_sound(inputs[Input::CHAMBER_TEMP].value, inputs[Input::GAMMA].value, inputs[Input::MOLECULAR_WEIGHT].value) << "\n";
+      std::cout << "Speed of sound in the exhaust (m/s): " << speed_of_sound << "\n";
       std::cout << "The local Mach at the exit: " << exit_mach << "\n";
       std::cout << "The expansion ratio from throat to exit: " << epsilon << "\n";
       std::cout << "\n";
       std::cout << "The throat area (cm^2): " << 10000 * throat_area << "\n"; // note that these two areas are still stored as m^2; they are simply logged as cm^2 for reading's sake
       std::cout << "The exit area (cm^2): " << 10000 * exit_area << "\n";
-      std::cout << "Throat diameter (cm): " << 200 * MathTools::find_radius(throat_area) << "\n"; // also stored as a radius and in meters
-      std::cout << "Exit diameter (cm): " << 200 * MathTools::find_radius(exit_area) << "\n";
+      std::cout << "Throat radius (cm): " << 100 * MathTools::find_radius(throat_area) << "\n"; // also stored in meters
+      std::cout << "Exit radius (cm): " << 100 * MathTools::find_radius(exit_area) << "\n";
+      std::cout << "Nozzle Length (cm): " << 100 * length << "\n"; // ALSO stored in meters
    }
    //check if we screwed up and throat is bigger than a square meter
    if (throat_area > 1) {

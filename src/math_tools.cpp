@@ -11,4 +11,9 @@ double MathTools::find_radius(double area) {
     return sqrt(area / MathTools::pi);
 }
 
-//45437829872353247894238793247894378943278943278432784327843278432784327834287987283478732489743287932498743298723487934298738927
+double MathTools::to_radians(double degrees) {
+    return (MathTools::pi * degrees) / 180.0;
+}
+double MathTools::to_degrees(double radians) {
+    return (180.0 * radians) / MathTools::pi;
+}

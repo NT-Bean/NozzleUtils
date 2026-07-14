@@ -49,6 +49,9 @@ class MathTools
 
     static double find_radius(double area);
 
+    static double to_radians(double degrees);
+    static double to_degrees(double radians);
+
 };
 
 #endif
