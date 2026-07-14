@@ -14,13 +14,10 @@ class Formulae
     
     static double find_speed_of_sound(double temperature, double gamma, double molecular_weight);
 
-    static double find_local_mach(double velocity, double temperature, double gamma, double molecular_weight);
     static double find_local_mach(double velocity, double speed_of_sound);
 
-    static double find_throat_area(double mass_flow, double chamber_pressure, double gamma, double chamber_temperature, double specific_gas_constant);
     static double find_throat_area(double force, double thrust_coefficient, double chamber_pressure);
 
-    static double find_epsilon(double exit_mach, double gamma);
     static double find_epsilon(double ambient_pressure, double chamber_pressure, double gamma);
 
     static double find_exit_area(double epsilon, double throat_area);
