@@ -98,11 +98,11 @@ int main() {
    // we print the results
    // if = 1 then they get just dimensions
    if (do_they_want_all == 1) {
-      std::cout << "The throat area (cm^2): " << 10000 * throat_area << "\n"; // note that these two areas are still stored as m^2; they are simply logged as cm^2 for reading's sake
-      std::cout << "The exit area (cm^2): " << 10000 * exit_area << "\n";
-      std::cout << "Throat diameter (cm): " << 200 * MathTools::find_radius(throat_area) << "\n"; // also stored in meters
-      std::cout << "Exit diameter (cm): " << 200 * MathTools::find_radius(exit_area) << "\n";
-      std::cout << "Nozzle Length (cm): " << 100 * length << "\n"; // ALSO stored in meters
+      std::cout << "The throat area (m^2): " << throat_area << "\n"; // note that these two areas are still stored as m^2; they are simply logged as cm^2 for reading's sake
+      std::cout << "The exit area (m^2): " << exit_area << "\n";
+      std::cout << "Throat radius (m): " << MathTools::find_radius(throat_area) << "\n"; // also stored in meters
+      std::cout << "Exit radius (m): " << MathTools::find_radius(exit_area) << "\n";
+      std::cout << "Nozzle Length (m): " << length << "\n"; // ALSO stored in meters
    }
 
    //if = 2 then they get armaggedon
@@ -114,11 +114,11 @@ int main() {
       std::cout << "The local Mach at the exit: " << exit_mach << "\n";
       std::cout << "The expansion ratio from throat to exit: " << epsilon << "\n";
       std::cout << "\n";
-      std::cout << "The throat area (cm^2): " << 10000 * throat_area << "\n"; // note that these two areas are still stored as m^2; they are simply logged as cm^2 for reading's sake
-      std::cout << "The exit area (cm^2): " << 10000 * exit_area << "\n";
-      std::cout << "Throat radius (cm): " << 100 * MathTools::find_radius(throat_area) << "\n"; // also stored in meters
-      std::cout << "Exit radius (cm): " << 100 * MathTools::find_radius(exit_area) << "\n";
-      std::cout << "Nozzle Length (cm): " << 100 * length << "\n"; // ALSO stored in meters
+      std::cout << "The throat area (m^2): " << throat_area << "\n"; // note that these two areas are still stored as m^2; they are simply logged as cm^2 for reading's sake
+      std::cout << "The exit area (m^2): " << exit_area << "\n";
+      std::cout << "Throat radius (m): " << MathTools::find_radius(throat_area) << "\n"; // also stored in meters
+      std::cout << "Exit radius (m): " << MathTools::find_radius(exit_area) << "\n";
+      std::cout << "Nozzle Length (m): " << length << "\n"; // ALSO stored in meters
    }
    //check if we screwed up and throat is bigger than a square meter
    if (throat_area > 1) {
