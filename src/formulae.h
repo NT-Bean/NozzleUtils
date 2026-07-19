@@ -22,13 +22,13 @@ class Formulae
 
     static double find_exit_area(double epsilon, double throat_area);
 
-    static double find_conical_length(double R_exit, double R_throat, double alpha);
-
     static double find_thrust_coefficient(double gamma, double ambient_pressure, double chamber_pressure);
 
     static double find_chamber_length(double characteristic_chamber_length, double throat_area, double chamber_radii);
 
+    static double convergent_length(double R_chamber, double R_exit);
 
+    static double find_divergent_length(double R_exit, double R_throat);
 };
 
 #endif

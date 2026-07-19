@@ -16,9 +16,9 @@ class Input
         CHARACTERISTIC_CHAMBER_LENGTH,
         GAMMA,
         MOLECULAR_WEIGHT, // MUST BE IN KG/MOL AS IS SI STANDARD, NOT G/MOL OR KG/KMOL
-        OF_RATIO,
+        insert_cash_or_select_payment_type,
         THRUST,
-        EXIT_TEMP
+        CONTRACTION_RATIO
     };
 
     InputType inputType;

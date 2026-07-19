@@ -15,12 +15,13 @@ int main() {
    std::cout << check << "\n";
 
    // take files from list and turn them into numbers
-   int do_they_want_all = 0;;
+   int do_they_want_all = 0;
    std::cout << "1 for just dimension, 2 FOR ALL: ";
    std::cin >> do_they_want_all;
 
    // case if user wants to load from file
    std::vector<Input> inputs;
+   
    if (check == 1) {
    
       for (int i = 0; i < 9; i++) {
@@ -83,48 +84,53 @@ int main() {
    double throat_area = Formulae::find_throat_area(inputs[Input::THRUST].value, thrust_coefficient, inputs[Input::CHAMBER_PRESSURE].value);
    // find the exit area
    double exit_area = Formulae::find_exit_area(epsilon, throat_area);
-   // find the length of an equivalent conical nozzle and a true 80% nozzle. i would make the percent a new input but eh
-   double conical_length = Formulae::find_conical_length(MathTools::find_radius(exit_area), MathTools::find_radius(throat_area), MathTools::to_radians(15.0));
-   double length = 0.8 * conical_length;
+   // find the length of an equivalent conical nozzle and a true 80% nozzle.
+   double divergent_length = Formulae::find_divergent_length(MathTools::find_radius(exit_area), MathTools::find_radius(throat_area));
+   // find the area of the combustion chamber
+   double chamber_area = inputs[Input::CONTRACTION_RATIO].value * throat_area; 
+   // find the length of the combustion chamber
+   double chamber_length = Formulae::find_chamber_length(inputs[Input::CHARACTERISTIC_CHAMBER_LENGTH].value, throat_area, MathTools::find_radius(chamber_area));
+
 
    //check if we actually achieve mach values
-   if (exit_mach <= 1){
-    std::cout << "\n Cant exist, exit velocity too low\n";
-    system("pause");
-    return 0;
+   if (exit_mach <= 1) {
+      std::cout << "\n Cant exist, exit velocity too low\n";
+      system("pause");
+      return 0;
    }
 
    std::cout << "\n"; // line spacing
    // we print the results
-   // if = 1 then they get just dimensions
-   if (do_they_want_all == 1) {
-      std::cout << "The throat area (m^2): " << throat_area << "\n"; // note that these two areas are still stored as m^2; they are simply logged as cm^2 for reading's sake
-      std::cout << "The exit area (m^2): " << exit_area << "\n";
-      std::cout << "Throat radius (m): " << MathTools::find_radius(throat_area) << "\n"; // also stored in meters
-      std::cout << "Exit radius (m): " << MathTools::find_radius(exit_area) << "\n";
-      std::cout << "Nozzle Length (m): " << length << "\n"; // ALSO stored in meters
-   }
-
-   //if = 2 then they get armaggedon
+   
+   //if = 2 then they get armaggedon, otherwise just the dimensions
    if (do_they_want_all == 2) {
+      
       std::cout << "The mass flow: " << mass_flow << "\n"; // whatever the standard unit of mass flow rate is
       std::cout << "The exit velocity (m/s): " << velocity_exit << "\n";
       std::cout << "The thrust coefficient: " << thrust_coefficient << "\n";
       std::cout << "Speed of sound in the exhaust (m/s): " << speed_of_sound << "\n";
       std::cout << "The local Mach at the exit: " << exit_mach << "\n";
       std::cout << "The expansion ratio from throat to exit: " << epsilon << "\n";
+      std::cout << "Throat Area (m^2): " << throat_area << "\n"; // note that these two areas are still stored as m^2; they are simply logged as cm^2 for reading's sake
+      std::cout << "Exit Area (m^2): " << exit_area << "\n";
       std::cout << "\n";
-      std::cout << "The throat area (m^2): " << throat_area << "\n"; // note that these two areas are still stored as m^2; they are simply logged as cm^2 for reading's sake
-      std::cout << "The exit area (m^2): " << exit_area << "\n";
-      std::cout << "Throat radius (m): " << MathTools::find_radius(throat_area) << "\n"; // also stored in meters
-      std::cout << "Exit radius (m): " << MathTools::find_radius(exit_area) << "\n";
-      std::cout << "Nozzle Length (m): " << length << "\n"; // ALSO stored in meters
+      
    }
+
+   
+   std::cout << "Throat Radius (m): " << MathTools::find_radius(throat_area) << "\n";
+   std::cout << "Exit radius (m): " << MathTools::find_radius(exit_area) << "\n";
+   std::cout << "Nozzle Length (m): " << divergent_length << "\n";
+   std::cout << "Chamber Radius (m): " << MathTools::find_radius(chamber_area) << "\n";
+   std::cout << "Chamber length (m): " << chamber_length << "\n";
+
+   
    //check if we screwed up and throat is bigger than a square meter
    if (throat_area > 1) {
       std::cout << "that's a lil big there\n";
    }
-   //pause code so we can  see the output
+
+   //pause code so we can see the output
    std::cout << "\n";
    system("pause");
    return 0;

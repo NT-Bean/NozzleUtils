@@ -12,9 +12,9 @@ Input::Input(InputType inputType)
         "./inputs/characteristic chamber length {m}.txt",
         "./inputs/gamma.txt",
         "./inputs/Molecular weight.txt",
-        "./inputs/O-F ratio.txt",
+        "./inputs/subtotal.txt",
         "./inputs/thrust wanted {n}.txt",
-        "./inputs/exit temp.txt"
+        "./inputs/contraction ratio.txt"
     };
 
     filepath = filepathOptions[(int)inputType];
@@ -27,9 +27,9 @@ Input::Input(InputType inputType)
         "Characteristic Chamber Length",
         "Gamma",   
         "Molecular Weight",
-        "O-F Ratio",
+        "Thank you for shopping at Costco.",
         "Thrust",
-        "Exit Temperature"
+        "Contraction Ratio"
     };
 
     name = nameOptions[(int)inputType];

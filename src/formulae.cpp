@@ -33,28 +33,20 @@ double Formulae::find_exit_area(double epsilon, double throat_area) {
     return (epsilon * throat_area);
 }
 
-// find conical length
-double Formulae::find_conical_length(double R_exit, double R_throat, double alpha) {
-    return (R_exit - R_throat) / tan(alpha);
-}
-
 //I forgot what this one is
 double Formulae::find_thrust_coefficient(double gamma, double ambient_pressure, double chamber_pressure){
     return sqrt(((2.0 * gamma * gamma) / (gamma - 1.0)) * pow(2.0 / (gamma + 1.0), (gamma + 1.0) / (gamma - 1.0)) * (1.0 - pow(ambient_pressure / chamber_pressure, (gamma - 1.0) / gamma)) );
 }
 
 double Formulae::find_chamber_length(double characteristic_chamber_length, double throat_area, double chamber_radii) {
-    return (characteristic_chamber_length * throat_area) / (MathTools::pi * pow(chamber_radii, 2)); // i forgot how to call pi
+    return (characteristic_chamber_length * throat_area) / (MathTools::pi * pow(chamber_radii, 2));
 }
 
-/*         // take files from list and turn them into numbers
-    double ambient_pressure = numbercheck(std::string(ListofFilePaths[0]));
-    double chamber_pressure = numbercheck(std::string(ListofFilePaths[1]));
-    double chamber_temperature = numbercheck(std::string(ListofFilePaths[2]));
-    double characteristic_chamber_length = numbercheck(std::string(ListofFilePaths[3]));
-    double gamma = numbercheck(std::string(ListofFilePaths[4]));
-    double molecular_weight = numbercheck(std::string(ListofFilePaths[5]));
-    double of_ratio = numbercheck(std::string(ListofFilePaths[6]));
-    double thrust = numbercheck(std::string(ListofFilePaths[7]));
-    double exit_temperature
-    */
+double Formulae::convergent_length(double R_chamber, double R_throat) {
+    return (R_chamber - R_throat) / tan(30); // tan(30) is the half anglem currently 30 degrees because industry standard
+}
+
+// find divergent length
+double Formulae::find_divergent_length(double R_exit, double R_throat) {
+    return (R_exit - R_throat) / tan(15); // tan(15) is the half angle currently 15 degrees because industry standard
+}
