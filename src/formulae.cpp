@@ -15,18 +15,20 @@ double Formulae::find_speed_of_sound(double temperature, double gamma, double mo
     return sqrt((gamma * MathTools::universalGasConstant * temperature) / molecular_weight);
 }
 
+// find local mach
 double Formulae::find_local_mach(double velocity, double speed_of_sound) {
     return velocity / speed_of_sound;
 }
 
-//optimum expansions
+// find throat area
 double Formulae::find_throat_area(double force, double thrust_coefficient, double chamber_pressure) {
     return force / (thrust_coefficient * chamber_pressure);
 }
 
+//optimum expansions
 double Formulae::find_epsilon(double ambient_pressure, double chamber_pressure, double gamma) {
     return 1.0 / ( pow((gamma + 1.0) / 2.0, 1.0 / (gamma - 1.0)) * pow(ambient_pressure / chamber_pressure, 1.0 / gamma) * sqrt( ((gamma + 1) / (gamma - 1)) * (1 - pow(ambient_pressure / chamber_pressure, (gamma - 1.0) / gamma)) ) );
-}
+} // sus redo optimum expansion
 
 //Find exit area
 double Formulae::find_exit_area(double epsilon, double throat_area) {
