@@ -27,7 +27,7 @@ Input::Input(InputType inputType)
         "Characteristic Chamber Length",
         "Gamma",   
         "Molecular Weight",
-        "Thank you for shopping at Costco.",
+        "Thank you for shopping at Costco",
         "Thrust",
         "Contraction Ratio"
     };
