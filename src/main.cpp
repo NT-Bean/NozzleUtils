@@ -12,7 +12,8 @@ int main() {
 
    std::cout << "1 load from file, 2 load from input: ";
    std::cin >> check;
-   std::cout << check << "\n";
+   // why did we put this in here
+   // std::cout << check << "\n";
 
    // take files from list and turn them into numbers
    int do_they_want_all = 0;

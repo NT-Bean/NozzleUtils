@@ -43,10 +43,10 @@ double Formulae::find_chamber_length(double characteristic_chamber_length, doubl
 }
 
 double Formulae::convergent_length(double R_chamber, double R_throat) {
-    return (R_chamber - R_throat) / tan(30); // tan(30) is the half anglem currently 30 degrees because industry standard
+    return (R_chamber - R_throat) / tan(MathTools::to_radians(30)); // tan(30) is the half anglem currently 30 degrees because industry standard
 }
 
 // find divergent length
 double Formulae::find_divergent_length(double R_exit, double R_throat) {
-    return (R_exit - R_throat) / tan(15); // tan(15) is the half angle currently 15 degrees because industry standard
+    return (R_exit - R_throat) / tan(MathTools::to_radians(15)); // tan(15) is the half angle currently 15 degrees because industry standard
 }
